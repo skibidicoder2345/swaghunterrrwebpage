@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>swagHunterrr | Auge Style</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            /* 🔥 STEAM ФОН */
+            background: url('https://steamuserimages-a.akamaihd.net/ugc/361778856649799377/CDE2551B2A68C60D21BE5DE20DD23B8D38543CFA/?imw=512&imh=287&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+            /* 🔥 Тёмный оверлей для лучшей читаемости */
+            position: relative;
+        }
+        
+        /* 🔥 Затемняющий оверлей */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 0;
+        }
+        
+        .content {
+            text-align: center;
+            z-index: 1;
+            /* 🔥 АБСОЛЮТНОЕ ЦЕНТРИРОВАНИЕ */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+            /* 🔥 НОВАЯ АВАТАРКА */
+            background: url('https://images-ext-1.discordapp.net/external/SwwYYqAFagIdl4-e_8txrGzM41SHubb1-xQS7-aauVk/https/cdn.discordapp.com/avatars/1295635315465388116/011107026748acae927d6342f1aa368f.png?format=webp&quality=lossless');
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #fff;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            letter-spacing: 2px;
+            font-weight: bold;
+            margin: 0;
+            /* 🔥 Гарантированное центрирование */
+            text-align: center;
+            width: 100%;
+        }
+
+        /* 🔥 Стили для кнопки управления музыкой */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+        }
+
+        .music-control:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="avatar"></div>
+        <h1>swagHunterrr</h1>
+    </div>
+
+    <!-- 🔥 Аудио элемент с твоей музыкой -->
+    <audio id="background-music" loop>
+        <source src="https://cdn.discordapp.com/attachments/1374820890042437755/1409884968213287106/AK_47_-_pps_ne_khodyat_dps_ne_tormazyat_76988439.mp3?ex=68af0132&is=68adafb2&hm=e66835964c1c84ff3ad2021900b7c95818485305685b1282a01977bac38f588c&" type="audio/mp3">
+        Ваш браузер не поддерживает аудио элемент.
+    </audio>
+
+    <!-- 🔥 Кнопка управления музыкой -->
+    <button class="music-control" onclick="toggleMusic()">🔊 Музыка: ВКЛ</button>
+
+    <script>
+        // 🔥 Функция для управления музыкой
+        function toggleMusic() {
+            const audio = document.getElementById('background-music');
+            const button = document.querySelector('.music-control');
+            
+            if (audio.paused) {
+                audio.play().then(() => {
+                    button.textContent = '🔊 Музыка: ВКЛ';
+                    button.style.background = 'rgba(0, 0, 0, 0.7)';
+                }).catch(error => {
+                    button.textContent = '❌ Нажми ещё раз';
+                    button.style.background = 'rgba(255, 0, 0, 0.7)';
+                });
+            } else {
+                audio.pause();
+                button.textContent = '🔇 Музыка: ВЫКЛ';
+                button.style.background = 'rgba(255, 0, 0, 0.7)';
+            }
+        }
+
+        // 🔥 Автозапуск музыки при загрузке
+        window.onload = function() {
+            const audio = document.getElementById('background-music');
+            const button = document.querySelector('.music-control');
+            
+            // Пытаемся автозапуск
+            audio.play().then(() => {
+                button.textContent = '🔊 Музыка: ВКЛ';
+                button.style.background = 'rgba(0, 0, 0, 0.7)';
+            }).catch(error => {
+                // Если автозапуск заблокирован
+                button.textContent = '▶️ Нажми для музыки';
+                button.style.background = 'rgba(255, 165, 0, 0.7)';
+            });
+        };
+    </script>
+</body>
+</html>
